@@ -1,0 +1,74 @@
+# Scoreboard Objectives Documentation
+
+This file will track all scoreboard objectives used in the Distance Detector datapack.
+
+Format:
+- Objective Name: description
+- Usage: how/where it's used
+- Notes: any additional information
+
+## Current Objectives
+
+### Position Tracking (All values multiplied by 72 for precision)
+- `dstdt_pos_x`: Current X position
+  - Usage: Store player's current X coordinate
+  - Notes: Updated every tick for tracked players
+
+- `dstdt_pos_y`: Current Y position
+  - Usage: Store player's current Y coordinate
+  - Notes: Updated every tick for tracked players
+
+- `dstdt_pos_z`: Current Z position
+  - Usage: Store player's current Z coordinate
+  - Notes: Updated every tick for tracked players
+
+- `dstdt_prev_x`: Previous X position
+  - Usage: Store player's previous X coordinate
+  - Notes: Updated every tick from last pos.x
+
+- `dstdt_prev_y`: Previous Y position
+  - Usage: Store player's previous Y coordinate
+  - Notes: Updated every tick from last pos.y
+
+- `dstdt_prev_z`: Previous Z position
+  - Usage: Store player's previous Z coordinate
+  - Notes: Updated every tick from last pos.z
+
+### Distance Calculation
+- `dstdt_delta_x`: X coordinate difference
+  - Usage: Temporary storage for position delta calculation
+  - Notes: pos.x - prev.x
+
+- `dstdt_delta_y`: Y coordinate difference
+  - Usage: Temporary storage for position delta calculation
+  - Notes: pos.y - prev.y
+
+- `dstdt_delta_z`: Z coordinate difference
+  - Usage: Temporary storage for position delta calculation
+  - Notes: pos.z - prev.z
+
+- `dstdt_squared`: Sum of squared deltas
+  - Usage: Store x²+y²+z² before sqrt calculation
+  - Notes: delta.x² + delta.y² + delta.z²
+
+- `dstdt_const`: Constants storage
+  - Usage: Store constant values (#2 for sqrt, #72 for scaling)
+  - Notes: Initialized in init.mcfunction
+
+### Newton's Method SQRT Calculation
+- `dstdt_sqrt_input`: Input value for sqrt
+  - Usage: Store the value we want to calculate sqrt of
+  - Notes: Value is squared distance * 72²
+
+- `dstdt_sqrt_result`: Current approximation
+  - Usage: Store the current sqrt approximation
+  - Notes: Initial value will be 235 (best starting point)
+
+- `dstdt_sqrt_temp`: Temporary calculation storage
+  - Usage: Store intermediate values during Newton's method
+  - Notes: Used for division and averaging
+
+### Final Results
+- `dstdt_distance`: Total distance traveled
+  - Usage: Accumulate total distance for each player
+  - Notes: Value is in block-units * 72, divided by 72 when displaying

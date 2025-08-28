@@ -1,0 +1,13 @@
+# Tags Documentation
+
+This file will track all tags used in the Distance Detector datapack.
+
+Format:
+- Tag Name: description
+- Usage: how/where it's used
+- Notes: any additional information
+
+## Current Tags
+- `dstdt.tracking`: to know a player is tracked.
+  - Usage: A player have this tag iff it's tracked.
+  - Notes: Added by `dstdt:begin` and removeded by `dstdt:end`
